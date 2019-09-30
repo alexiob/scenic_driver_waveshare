@@ -2,7 +2,7 @@ defmodule Waveshare.MixProject do
   use Mix.Project
 
   @app :scenic_driver_waveshare
-  @version "1.0.0"
+  @version "0.8.0"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
 
   def project do

@@ -1,10 +1,10 @@
 # Scenic render and input driver for Waveshare display HAT for Raspberry PI
 
-A library to provide a Scenic framework driver implementation for the display HAT for Raspberry PI from Waveshare.
+A library to provide a Scenic framework driver implementation for the display HAT for Raspberry PI from Waveshare. Inspired by [Inky driver](https://github.com/pappersverk/inky) and [Bonnet driver](https://github.com/nerves-training/scenic_driver_oled_bonnet).
 
 Currently supports:
 
-- 128x128, 1.44inch LCD display HAT for Raspberry Pi
+- [128x128, 1.44inch LCD display HAT for Raspberry Pi](https://www.waveshare.com/product/modules/oleds-lcds/raspberry-pi-lcd/1.44inch-lcd-hat.htm)
     - SKU: 13891
     - Part Number: 1.44inch LCD HAT
     - Brand: Waveshare
@@ -13,8 +13,7 @@ This driver only runs on RPi devices as far as we know as it is based on the sce
 
 ## Installation
 
-The package can be installed
-by adding `scenic_driver_waveshare` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `scenic_driver_waveshare` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -24,11 +23,13 @@ def deps do
 end
 ```
 
+Run `mix deps.get` to get the new dependency.
+
 ## Usage
 
 This library provides the `Scenic.Driver.Nerves.Waveshare` driver module.
 
-An usage example is provided in [alexiob/sample_scenic_waveshare](https://github.com/alexiob/sample_scenic_waveshare).
+An usage example is provided in [alexiob/sample_scenic_driver_waveshare](https://github.com/alexiob/sample_scenic_driver_waveshare).
 
 The driver configuration, to be placed in `config/target.exs`:
 
@@ -54,7 +55,11 @@ config :waveshare, :viewport, %{
         # :ppm | :rgb24 (default) | :rgb565 | :mono | :mono_column_scan
         capture_format: :rgb24,
         refresh_interval: 50,
-        spi_speed_hz: 20_000_000
+        spi_speed_hz: 20_000_000,
+        # remapping input keys
+        input_mappings: %{
+            button_3: "button_3_text"
+        }
       ],
       name: :waveshare
     }
@@ -64,7 +69,7 @@ config :waveshare, :viewport, %{
 
 I strongly suggest to use the default values provided above.
 
-For development on host, we recommend just using the `glfw` driver for scenic.
+For development on host, we recommend just using the `glfw` driver for Scenic.
 
 The HAT inputs generate Scenic `:key` events:
 
@@ -76,7 +81,7 @@ def handle_input(
     ) do
 
   Logger.debug(
-    handle_input: received event #{inspect(event)} state=#{inspect(state)}"
+    "handle_input: received event #{inspect(event)} state=#{inspect(state)}"
   )
 
   case {key, action} do
