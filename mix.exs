@@ -2,7 +2,7 @@ defmodule Waveshare.MixProject do
   use Mix.Project
 
   @app :scenic_driver_waveshare
-  @version "0.8.0"
+  @version "0.8.1"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
 
   def project do
@@ -53,7 +53,7 @@ defmodule Waveshare.MixProject do
 
   defp docs() do
     [
-      main: Waveshare,
+      main: Scenic.Driver.Nerves.Waveshare,
       extras: [
         "README.md": [
           title: "Readme"
