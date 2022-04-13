@@ -18,7 +18,7 @@ The package can be installed by adding `scenic_driver_waveshare` to your list of
 ```elixir
 def deps do
   [
-    {:scenic_driver_waveshare, "~> 1.0.0"}
+    {:scenic_driver_waveshare, "~> 0.8.2"}
   ]
 end
 ```
