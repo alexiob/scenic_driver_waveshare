@@ -1,4 +1,4 @@
 defmodule WaveshareTest do
   use ExUnit.Case
-  doctest Waveshare
+  doctest Scenic.Driver.Nerves.Waveshare
 end
